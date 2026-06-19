@@ -1,0 +1,305 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>德州扑克app · 策略与乐趣</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background-color: #f6f4f1;
+      color: #1e1e1f;
+      line-height: 1.6;
+    }
+
+    .container {
+      max-width: 1120px;
+      margin: 0 auto;
+      padding: 0 24px;
+    }
+
+    /* ===== 深色头图 ===== */
+    .hero {
+      background: linear-gradient(145deg, #0b0c0f 0%, #1c1f26 100%);
+      padding: 64px 0 60px;
+      color: #eae8e3;
+      text-align: center;
+      border-bottom: 1px solid #2f323b;
+    }
+
+    .hero h1 {
+      font-size: 2.6rem;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+      margin-bottom: 14px;
+      color: #f3ede8;
+    }
+
+    .hero p {
+      font-size: 1.15rem;
+      max-width: 680px;
+      margin: 0 auto;
+      opacity: 0.82;
+    }
+
+    .hero .highlight {
+      display: inline-block;
+      margin-top: 24px;
+      padding: 6px 20px;
+      border: 1px solid rgba(255, 190, 90, 0.3);
+      border-radius: 40px;
+      color: #ffc389;
+      font-size: 0.95rem;
+      background: rgba(255, 180, 80, 0.06);
+    }
+
+    /* ===== 浅色正文区 ===== */
+    .content {
+      background: #faf9f7;
+      padding: 48px 0 60px;
+    }
+
+    .section-title {
+      font-size: 1.7rem;
+      font-weight: 450;
+      letter-spacing: -0.01em;
+      color: #1b1d22;
+      margin-bottom: 28px;
+      border-left: 4px solid #c37d3b;
+      padding-left: 16px;
+    }
+
+    .card-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      margin: 32px 0 20px;
+    }
+
+    .card {
+      background: white;
+      border-radius: 18px;
+      padding: 28px 22px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04), 0 1px 3px rgba(0, 0, 0, 0.06);
+      transition: transform 0.2s ease, box-shadow 0.2s ease;
+    }
+
+    .card:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05), 0 2px 6px rgba(0, 0, 0, 0.06);
+    }
+
+    .card h3 {
+      font-size: 1.25rem;
+      font-weight: 500;
+      color: #24262b;
+      margin-bottom: 12px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .card p {
+      color: #3b3e47;
+      font-size: 0.97rem;
+    }
+
+    .card .emoji-icon {
+      font-size: 1.6rem;
+      line-height: 1;
+    }
+
+    /* 强调色用于链接 */
+    a {
+      color: #b35d24;
+      text-decoration: underline;
+      text-underline-offset: 3px;
+      text-decoration-thickness: 1px;
+      transition: color 0.15s;
+    }
+
+    a:hover {
+      color: #85451b;
+      text-decoration-color: #85451b;
+    }
+
+    .natural-link {
+      background: #fff7f0;
+      padding: 20px 24px;
+      border-radius: 18px;
+      margin: 32px 0 24px;
+      border: 1px solid #ead9cc;
+    }
+
+    .natural-link p {
+      font-size: 1.05rem;
+      color: #272a30;
+    }
+
+    .audience-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px 24px;
+      margin: 20px 0 10px;
+      list-style: none;
+      padding: 0;
+    }
+
+    .audience-list li {
+      background: #eae7e0;
+      padding: 6px 18px;
+      border-radius: 40px;
+      font-size: 0.92rem;
+      color: #1e2025;
+    }
+
+    .faq-mini {
+      background: #f1eee9;
+      border-radius: 20px;
+      padding: 28px 30px;
+      margin: 40px 0 10px;
+    }
+
+    .faq-mini h4 {
+      font-size: 1.1rem;
+      font-weight: 500;
+      margin-bottom: 12px;
+      color: #1f2127;
+    }
+
+    .faq-mini dt {
+      font-weight: 500;
+      margin-top: 16px;
+      color: #3b3f49;
+    }
+
+    .faq-mini dd {
+      margin-left: 0;
+      margin-top: 4px;
+      color: #53575f;
+    }
+
+    .footer-note {
+      margin-top: 48px;
+      padding-top: 20px;
+      border-top: 1px solid #ddd8cf;
+      font-size: 0.9rem;
+      color: #676b72;
+      text-align: center;
+    }
+
+    /* 响应式细节 */
+    @media (max-width: 700px) {
+      .hero {
+        padding: 44px 0 40px;
+      }
+      .hero h1 {
+        font-size: 2rem;
+      }
+      .card-grid {
+        grid-template-columns: 1fr;
+      }
+      .section-title {
+        font-size: 1.4rem;
+      }
+      .faq-mini {
+        padding: 20px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .hero p {
+        font-size: 1rem;
+      }
+      .natural-link {
+        padding: 16px;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- 深色头图 -->
+  <section class="hero">
+    <div class="container">
+      <h1>德州扑克 · 从牌桌到屏幕</h1>
+      <p>读牌、计算、心理博弈——将经典的游戏体验带入手掌之间。<br>不只是运气，更是思考的艺术。</p>
+      <span class="highlight">策略 · 节奏 · 连接</span>
+    </div>
+  </section>
+
+  <!-- 浅色正文区 -->
+  <main class="content">
+    <div class="container">
+
+      <!-- 主视觉简介 / 用途卡片 -->
+      <h2 class="section-title">围绕牌局的多面工具</h2>
+      <div class="card-grid">
+        <div class="card">
+          <h3><span class="emoji-icon">🃏</span> 练习与复盘</h3>
+          <p>无论新人还是老手，随时开一局，回看关键手牌，慢慢打磨自己的决策逻辑。单人与模拟对局都可用。</p>
+        </div>
+        <div class="card">
+          <h3><span class="emoji-icon">🧠</span> 策略拆解</h3>
+          <p>位置、范围、底池赔率——基本概念融入界面提示，在真实对局中逐步加深理解，而非单纯背公式。</p>
+        </div>
+        <div class="card">
+          <h3><span class="emoji-icon">🌐</span> 轻量连接</h3>
+          <p>快速载入、低占用，适合日常短时间使用。无论等车还是休息，随时打开进入状态。</p>
+        </div>
+      </div>
+
+      <!-- 自然链接段落（嵌入句子） -->
+      <div class="natural-link">
+        <p>如果你正在寻找一款结构清晰、专注牌局本身的体验，可以了解一下 <a href="https://app-texaspokerapp.com">德州扑克app</a>。它围绕经典规则搭建，没有繁杂的装饰，适合静下心来打几手牌。</p>
+      </div>
+
+      <!-- 适合人群 -->
+      <h2 class="section-title" style="margin-top: 8px;">哪些人适合尝试</h2>
+      <ul class="audience-list">
+        <li>刚接触德州规则、想从基础学起的爱好者</li>
+        <li>有一定经验、希望保持手感的中段玩家</li>
+        <li>喜欢轻量化体验、不想要过多社交压力的牌友</li>
+        <li>对策略分析感兴趣，愿意反复琢磨一手牌的人</li>
+      </ul>
+
+      <!-- 提示 / 场景描述 -->
+      <div style="margin: 30px 0 10px; display: flex; flex-wrap: wrap; gap: 12px 24px; padding: 8px 0;">
+        <span style="background: #e7dcd0; padding: 4px 14px; border-radius: 30px; font-size: 0.92rem;">🧩 适合安静思考</span>
+        <span style="background: #e7dcd0; padding: 4px 14px; border-radius: 30px; font-size: 0.92rem;">⏳ 每局时间自主控制</span>
+        <span style="background: #e7dcd0; padding: 4px 14px; border-radius: 30px; font-size: 0.92rem;">📱 移动端适配流畅</span>
+      </div>
+
+      <!-- FAQ 摘要（简短） -->
+      <div class="faq-mini">
+        <h4>一些常见疑问</h4>
+        <dl>
+          <dt>需要注册或联网才能用吗？</dt>
+          <dd>基础功能无需注册，单机模式可直接开始。部分排行榜或同步功能可选联网，但不强制。</dd>
+          <dt>是否有新手引导？</dt>
+          <dd>界面内嵌了基本规则说明和简单术语提示，但更适合已经了解大致规则的玩家。</dd>
+          <dt>AI 对局强度如何？</dt>
+          <dd>提供多档位，从入门到偏紧凶的模式都可以选，方便逐步适应不同节奏。</dd>
+        </dl>
+      </div>
+
+      <!-- 自然收束 -->
+      <p style="margin-top: 28px; color: #464a53;">
+        整体来说，这款<a href="https://app-texaspokerapp.com">德州扑克app</a>没有过多的弹窗和引导，更像一个干净的训练桌。如果你也喜欢把扑克当作一种思维游戏，或许会习惯它的节奏。
+      </p>
+
+      <div class="footer-note">
+        <p>内容整理于公开信息 · 页面仅供介绍参考</p>
+      </div>
+
+    </div>
+  </main>
+
+</body>
+</html>

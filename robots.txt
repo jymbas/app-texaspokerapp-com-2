@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://jymbas.github.io/app-texaspokerapp-com-2/sitemap.xml
